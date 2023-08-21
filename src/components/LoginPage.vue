@@ -2,8 +2,8 @@
 <template>
   <div id="app">
   <div class="background">
-      <div class="shape"></div>
-      <div class="shape"></div>
+      <div class="login-side-shape"></div>
+      <div class="login-side-shape"></div>
   </div>
   <form @submit.prevent="login">
       <h3>Login Here</h3>
@@ -19,6 +19,8 @@
           </div>
           <input type="password" placeholder="Password" id="password" v-model="password" required>
       </div>
+      <p class="error-message">Invalid Username or Password</p>
+
       <button class="login-btn" type="submit">Log In</button>
   </form>
   </div>
@@ -34,13 +36,17 @@ export default {
   },
   methods: {
   login() {
+    const errorMessage = document.querySelector(".error-message");
+
       if (this.username === "mohammadflht" && this.password === "123456789") {
           this.$router.push('/blank');
-      } else alert("Invalid Username or Password");
+          errorMessage.style.visibility = "hidden";
+      } else {
+        errorMessage.style.visibility = "visible";
+      }
   },
   changeEye() {
-      // console.log("sdsd");
-      const eyeSlash = document.querySelector(".bi-eye-slash");
+    const eyeSlash = document.querySelector(".bi-eye-slash");
       const eye = document.querySelector(".bi-eye");
       const password = document.querySelector("#password");
 
@@ -59,13 +65,6 @@ export default {
 </script>
 
 <style media="screen">
-*,
-*:before,
-*:after{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 #app {
   width: 100%;
   height: 100vh;
@@ -79,18 +78,18 @@ export default {
   left: 50%;
   top: 50%;
 }
-.background .shape{
+.login-side-shape{
   height: 200px;
   width: 200px;
   position: absolute;
   border-radius: 50%;
 }
-.shape:first-child{
+.login-side-shape:first-child{
   background: linear-gradient(to left,#f8e356, #ff4f8b);
   left: -80px;
   top: -80px;
 }
-.shape:last-child{
+.login-side-shape:last-child{
   background: linear-gradient(to right, #e3b1f6,#ff4f8b);
   right: -30px;
   bottom: -80px;
@@ -110,7 +109,6 @@ form{
   padding: 50px 35px;
 }
 form *{
-  font-family: 'Poppins',sans-serif;
   color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
@@ -146,7 +144,7 @@ input{
   opacity: 60%;
 }
 .login-btn{
-  margin-top: 50px;
+  margin-top: 30px;
   width: 100%;
   background-color: #ffffff;
   color: #efefef;
@@ -196,5 +194,10 @@ input{
 }
 .bi-eye-slash {
   display: none;
+}
+.error-message {
+  margin-top: 12px;
+  color: #FF715B;
+  visibility: hidden;
 }
 </style>
