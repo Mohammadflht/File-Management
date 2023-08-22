@@ -2,13 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import LoginPage from './components/LoginPage.vue'
-import BlankPage from './components/BlankPage.vue'
+import AdminPanel from './components/AdminPanel.vue'
 
 Vue.use(VueRouter);
 
 const routes =[
   {path: '/', component: LoginPage},
-  {path: '/blank', component: BlankPage}
+  {path: '/admin-panel', component: AdminPanel}
 ];
 
 const router = new VueRouter({
