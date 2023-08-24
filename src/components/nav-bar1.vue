@@ -14,7 +14,7 @@
 
         <nav class="side-nav">
             <ul class="nav-menu">
-                <li @click="activatedList1()" class="nav-item li1"><font-awesome-icon class="listIcon1 iconList" icon="fas fa-user-cog"/> User Management</li>
+                <li  class="nav-item li1 active"><font-awesome-icon class="listIcon1 iconList" icon="fas fa-user-cog"/> User Management</li>
                 <li @click="activatedList2()" class="nav-item li2"><font-awesome-icon class="listIcon2 iconList" icon="fas fa-user-group"/> User Group</li>
                 <li @click="activatedList3()" class="nav-item li3"><font-awesome-icon class="listIcon3 iconList" icon="fas fa-database"/> Storage Space</li>
                 <li @click="activatedList4()" class="nav-item li4"><font-awesome-icon class="listIcon4 iconList" icon="fas fa-file-alt"/> File Management</li>
@@ -31,65 +31,15 @@ export default {
     }
     },
     methods: {
-    activatedList1() {
-        this.$router.push('./admin-panel/user-management');
-        let listName1 = document.querySelector('.li1');
-        let listName2 = document.querySelector('.li2');
-        let listName3 = document.querySelector('.li3');
-        let listName4 = document.querySelector('.li4');
-        listName1.classList.add("active");
-        listName2.classList.remove("active");
-        listName3.classList.remove("active");
-        listName4.classList.remove("active");
-        listName1.style.color = "#d2cca1"
-        listName2.style.color = "#111"
-        listName3.style.color = "#111"
-        listName4.style.color = "#111"
-        },
     activatedList2() {
-        this.$router.push('./admin-panel/user-group');
-        let listName1 = document.querySelector('.li1');
-        let listName2 = document.querySelector('.li2');
-        let listName3 = document.querySelector('.li3');
-        let listName4 = document.querySelector('.li4');
-        listName1.classList.remove("active");
-        listName2.classList.add("active");
-        listName3.classList.remove("active");
-        listName4.classList.remove("active");
-        listName1.style.color = "#111"
-        listName2.style.color = "#d2cca1"
-        listName3.style.color = "#111"
-        listName4.style.color = "#111"
+        this.$router.push('./user-group');
         },
     activatedList3() {
-        this.$router.push('./admin-panel/storage-space');
-        let listName1 = document.querySelector('.li1');
-        let listName2 = document.querySelector('.li2');
-        let listName3 = document.querySelector('.li3');
-        let listName4 = document.querySelector('.li4');
-        listName1.classList.remove("active");
-        listName2.classList.remove("active");
-        listName3.classList.add("active");
-        listName4.classList.remove("active");
-        listName1.style.color = "#111"
-        listName2.style.color = "#111"
-        listName3.style.color = "#d2cca1"
-        listName4.style.color = "#111"
+        this.$router.push('./storage-space');
         },
     activatedList4() {
-        this.$router.push('./admin-panel/file-management');
-        let listName1 = document.querySelector('.li1');
-        let listName2 = document.querySelector('.li2');
-        let listName3 = document.querySelector('.li3');
-        let listName4 = document.querySelector('.li4');
-        listName1.classList.remove("active");
-        listName2.classList.remove("active");
-        listName3.classList.remove("active");
-        listName4.classList.add("active");
-        listName1.style.color = "#111"
-        listName2.style.color = "#111"
-        listName3.style.color = "#111"
-        listName4.style.color = "#d2cca1"
+        this.$router.push('./file-management');
+
         },
     logOut() {
         this.$router.push('/');
@@ -122,6 +72,7 @@ export default {
         navBarList3.style.visibility = "hidden";
         navBarList4.style.visibility = "hidden";
         listIcon1.style.visibility = "visible";
+        listIcon1.style.color = "#080710";
         listIcon2.style.visibility = "visible";
         listIcon3.style.visibility = "visible";
         listIcon4.style.visibility = "visible";
@@ -137,6 +88,7 @@ export default {
         let navBarList2 = document.querySelector(".li2");
         let navBarList3 = document.querySelector(".li3");
         let navBarList4 = document.querySelector(".li4");
+        let listIcon1 = document.querySelector(".listIcon1");
 
         navigationPanel.style.width = "13%";
         userProfilePicture.style.visibility = "visible";
@@ -148,6 +100,7 @@ export default {
         navBarList2.style.visibility = "visible";
         navBarList3.style.visibility = "visible";
         navBarList4.style.visibility = "visible";
+        listIcon1.style.color = "#d2cca1";
         },
     },
 }
@@ -257,6 +210,7 @@ export default {
 .active {
     background-color: #080710;
     box-shadow: 0px -3px rgba(0, 0, 0, 0.2), 0px 3px rgba(0, 0, 0, 0.2);
+    color: #d2cca1 !important;
 
 }
 .menu-text {
