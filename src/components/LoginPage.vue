@@ -58,7 +58,7 @@ export default {
           errorMessage.innerHTML = "Invalid Username and Password";
           inputUsername.style.borderColor = "#ff715b80";
           inputPassword.style.borderColor = "#ff715b80";
-       }
+      }
   },
   changeEye() {
     const eyeSlash = document.querySelector(".bi-eye-slash");
