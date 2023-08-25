@@ -1,6 +1,8 @@
 <template>
-    <div id="user-management">\
+    <div id="user-management">
         <navBar1></navBar1>
+        <userLists></userLists>
+
         <!-- <panelHeader></panelHeader> -->
     </div>
 </template>
@@ -8,10 +10,12 @@
 <script>
 // import panelHeader from './panel-header.vue';
 import navBar1 from './nav-bar1.vue';
+import userLists from './UserManagementList.vue';
 export default {
     components: {
         // panelHeader,
         navBar1,
+        userLists,
     },
     data() {
     return {
@@ -30,4 +34,5 @@ export default {
     display: flex;
     position: relative;
 }
+
 </style>

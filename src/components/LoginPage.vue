@@ -41,7 +41,7 @@ export default {
     const inputPassword = document.querySelector(".input-password");
 
       if (this.username === "mohammadflht" && this.password === "123456789") {
-          this.$router.push('/admin-panel');
+          this.$router.push('/admin-panel/file-management');
           errorMessage.style.visibility = "hidden";
         } else if (this.username === "mohammadflht" && this.password !== "123456789") {
           inputUsername.style.borderColor = "rgba(255, 255, 255, 0.07)";
