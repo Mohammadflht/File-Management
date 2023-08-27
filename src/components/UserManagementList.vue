@@ -37,8 +37,9 @@
         <td v-else><input type="text" v-model="row.usergroup" class="user-table-data"></td>
 
         <td class="user-table-data">
-            <font-awesome-icon class="user-records-edit-icon user-records-icons" icon="fas fa-edit" @click="editRow(index)" v-if="!row.editing"/>
-            <font-awesome-icon class="user-records-save-icon user-records-icons" icon="fas fa-save" @click="saveRow(index)" v-else/>
+            <font-awesome-icon class="user-records-edit-icon user-records-icons" icon="fas fa-edit" @click="editRow(index)" v-if="!row.editing" title="Edit"/>
+            <font-awesome-icon class="user-records-save-icon user-records-icons" icon="fas fa-save" @click="saveRow(index)" v-else title="Save"/>
+            <font-awesome-icon class="user-records-remove-icon user-records-icons" icon="fas fa-trash" @click="removeRow(index)" title="Delete"/>
         </td>
         <!-- <td class="user-table-data"></td> -->
     </tr>
@@ -51,6 +52,7 @@
 
 <script>
 // import panelHeader from './panel-header.vue';
+// import {mapState, mapMutations} from "vuex";
 export default {
     components: {
         // panelHeader,
@@ -58,26 +60,28 @@ export default {
     data() {
     return {
         username: 'mohammadflht',
-        usersData: [
-    {username: 'mohammadflht', firstName: "Mohammad", lastName: "Flahati", type: 'admin', usergroup: 'A', editing: false},
-    {username: 'adminadmin1122', firstName: "Alireza", lastName: "Akbari", type: 'user', usergroup: 'A', editing: false},
-    {username: 'sb13500531', firstName: "Melika", lastName: "Ahmadi", type: 'admin', usergroup: 'B', editing: false},
-    {username: 'avaasflqkd112', firstName: "Sepideh", lastName: "Hasani", type: 'admin', usergroup: 'C', editing: false},
-    {username: 'sdlvnjsnivnnss', firstName: "Arash", lastName: "Aslani", type: 'user', usergroup: 'B', editing: false}
-    ],
-    newRecord: { username: '', firstName: '', lastName: '', type: '', usergroup: ''},
+        newRecord: { username: '', firstName: '', lastName: '', type: '', usergroup: ''},
     }
     },
+    computed: {
+        // ...mapState(['usersData'])
+        usersData() {
+            return this.$store.state.usersData;
+        }
+    },
     methods: {
+        // ...mapMutations(['editRow', 'saveRow', 'addRow'])
         editRow(index) {
-            this.usersData[index].editing = true;
+            this.$store.commit('editUser', index);
         },
         saveRow(index) {
-            this.usersData[index].editing = false;
+            this.$store.commit('saveUser', index);
+    
         },
         addRow() {
         if (this.newRecord.username && this.newRecord.firstName && this.newRecord.lastName && this.newRecord.type && this.newRecord.usergroup) {
-            this.usersData.push({ ...this.newRecord, editing: false });
+            const newUser = { ...this.newRecord, editing: false };
+            this.$store.commit('addUser', newUser);
             this.newRecord.username = '';
             this.newRecord.firstName = '';
             this.newRecord.lastName = '';
@@ -85,6 +89,14 @@ export default {
             this.newRecord.usergroup = '';
         }
     },
+    removeRow(index) {
+            this.$store.commit('removeUser', index);
+        }
+    },
+    created() {
+        if(localStorage.getItem('usersData')) {
+            this.$store.commit('setUsersData', JSON.parse(localStorage.getItem('usersData')));
+        }
     }
 
 }
@@ -175,6 +187,10 @@ export default {
     text-align: center;
     padding: 15px 10px;
     border: 1px solid #d2cca12c;
+}
+.user-records-remove-icon {
+    /* color: #ed2929; */
+    margin-left: 8px;
 }
 .user-records-icons {
     cursor: pointer;
