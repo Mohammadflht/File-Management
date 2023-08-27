@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import store from './store'
 import VueRouter from 'vue-router'
 import LoginPage from './components/LoginPage.vue'
 import AdminPanel from './components/AdminPanel.vue'
@@ -20,6 +21,9 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 
+
+// Call this action to get the data from localStorage on page load
+store.dispatch('getUsersData');
 
 /* add icons to the library */
 library.add(faUserSecret, faTwitter, fas, fab)
@@ -49,5 +53,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
