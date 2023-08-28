@@ -1,13 +1,36 @@
 <template>
     <div id="wrapper">
-        <div class="adding-row">
-        <input placeholder="Username" type="text" v-model.trim="newRecord.username">
-        <input placeholder="Firstname" type="text" v-model.trim="newRecord.firstName">
-        <input placeholder="Lastname" type="text" v-model.trim="newRecord.lastName">
-        <input placeholder="Type" type="text" v-model.trim="newRecord.type">
-        <input placeholder="Usergroup" type="text" v-model.trim="newRecord.usergroup">
-        <button @click="addRow()"><font-awesome-icon class="user-records-edit-icon user-records-icons" icon="fas fa-plus"/></button>
-    </div>
+
+        <table id="keywords" cellspacing="0" cellpadding="0">
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Type</th>
+        <th>User group</th>
+        <th>Add</th>
+    </tr>
+    </thead>
+    <tbody class="user-records-table-body">
+    <tr>
+        <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.username"></td>
+        <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.firstName"></td>
+        <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.lastName"></td>
+        <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.type"></td>
+        <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.usergroup"></td>
+        <td class="user-table-data">
+            <font-awesome-icon @click="addRow()" class="user-records-add-icon user-records-icons" icon="fas fa-plus"/>
+        </td>
+        <!-- <td class="user-table-data"></td> -->
+    </tr>
+
+    </tbody>
+</table>
+
+
+
+
     <table id="keywords" cellspacing="0" cellpadding="0">
     <thead>
     <tr>
@@ -19,7 +42,7 @@
         <th>Action</th>
     </tr>
     </thead>
-    <tbody class="user-records-table-body">
+    <tbody class="user-records-table-body users-list">
     <tr v-for="(row, index) in usersData" :key="index" class="user-table-row">
 
         <td class="user-table-data">{{row.username}}</td>
@@ -51,8 +74,7 @@
 </template>
 
 <script>
-// import panelHeader from './panel-header.vue';
-// import {mapState, mapMutations} from "vuex";
+
 export default {
     components: {
         // panelHeader,
@@ -76,10 +98,9 @@ export default {
         },
         saveRow(index) {
             this.$store.commit('saveUser', index);
-    
         },
         addRow() {
-        if (this.newRecord.username && this.newRecord.firstName && this.newRecord.lastName && this.newRecord.type && this.newRecord.usergroup) {
+        if (this.newRecord.username && this.newRecord.username.length >= 5 && (this.newRecord.firstName || this.newRecord.lastName || this.newRecord.type || this.newRecord.usergroup || true)) {
             const newUser = { ...this.newRecord, editing: false };
             this.$store.commit('addUser', newUser);
             this.newRecord.username = '';
@@ -91,7 +112,7 @@ export default {
     },
     removeRow(index) {
             this.$store.commit('removeUser', index);
-        }
+    }
     },
     created() {
         if(localStorage.getItem('usersData')) {
@@ -100,6 +121,9 @@ export default {
     }
 
 }
+
+
+
 </script>
 
 <style media="screen">
@@ -114,40 +138,17 @@ export default {
     position: absolute;
     right: 0;
 }
-
-/* Adding rows */
-.adding-row {
-    width: 70%;
-    height: auto;
-    background-color: transparent;
-    margin: 20px auto;
+.create-user-input {
+    width: 160px;
+    height: 50px;
+    text-align: center;
+    padding: 15px 10px;
+    border: 1px solid #d2cca12c;
 }
-.adding-row input {
-    width: 14.28%;
-    display: inline-block;
-    margin: 0 12px;
-    border: 1px solid #d2cca159;
-    outline: none;
-    background-color: #080710;
-    color: #d2cca1;
+.user-records-add-icon {
+    color: #d2cca1e8;
+    font-size: 16px;
 }
-.adding-row input::placeholder {
-    color: #d2cca17d;
-}
-.adding-row input:focus {
-    background-color: #101007;
-}
-.adding-row button {
-    width: 25px;
-    height: 25px;
-    color: #d2cca1;
-    background-color: #080710;
-    border: 2px solid #d2cca1;
-    border-radius: 50%;
-    font-size: 14px;
-    margin-left: 12px;
-}
-
 #keywords {
     margin: 0 auto;
     font-size: 1.2em;
@@ -161,21 +162,15 @@ export default {
     padding-left: 42px;
     text-align: center;
 }
-#keywords thead tr th.headerSortUp, #keywords thead tr th.headerSortDown {
-    background: #acc8dd;
-}
-
-#keywords thead tr th.headerSortUp span {
-    background-image: url('https://i.imgur.com/SP99ZPJ.png');
-}
-#keywords thead tr th.headerSortDown span {
-    background-image: url('https://i.imgur.com/RkA9MBo.png');
-}
 .user-records-table-body input {
     margin: 0;
-    background-color: #1d1d1f;
+    background-color: #1d1d1faa;
     color: #d2cca1b2;
     outline: none;
+}
+.users-list input {
+    background-color: #080710;
+    border: 1px solid #d2cca180;
 }
 .user-table-row{
     color: #d2cca1b2;
