@@ -28,7 +28,7 @@ export default new Vuex.Store({
         setUsersData(state, data) {
             state.usersData = data;
             localStorage.setItem('usersData', JSON.stringify(state.usersData));
-        }
+        },
     },
     actions: {
     getUsersData({ commit }) {
