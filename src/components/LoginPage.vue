@@ -40,7 +40,7 @@ export default {
     const inputUsername = document.querySelector(".input-username");
     const inputPassword = document.querySelector(".input-password");
 
-      if (this.username === "mohammadflht" && this.password === "123456789") {
+      if (this.username === "admin" && this.password === "admin") {
           this.$router.push('/admin-panel/file-management');
           errorMessage.style.visibility = "hidden";
         } else if (this.username === "mohammadflht" && this.password !== "123456789") {
@@ -59,6 +59,14 @@ export default {
           inputUsername.style.borderColor = "#ff715b80";
           inputPassword.style.borderColor = "#ff715b80";
       }
+
+      // const user = this.$store.state.usersData.find(user => user.username === this.username && user.password === this.password);
+      // if (user) {
+      //   this.$store.commit('setLoggedIn', true)
+      //   this.$router.push('/admin-panel/file-management');
+      // } else {
+      //   alert('Invalid username or password')
+      // }
   },
   changeEye() {
     const eyeSlash = document.querySelector(".bi-eye-slash");
