@@ -11,7 +11,6 @@
                 <button @click="logOut()" type="button" class="logout-btn">Log Out</button>
             </div>
         </div>
-
         <nav class="side-nav">
             <ul class="nav-menu">
                 <li  class="nav-item li1 active"><font-awesome-icon class="listIcon1 iconList" icon="fas fa-user-cog"/> User Management</li>
@@ -19,6 +18,12 @@
                 <li @click="activatedList3()" class="nav-item li3"><font-awesome-icon class="listIcon3 iconList" icon="fas fa-database"/> Storage Space</li>
                 <li @click="activatedList4()" class="nav-item li4"><font-awesome-icon class="listIcon4 iconList" icon="fas fa-file-alt"/> File Management</li>
             </ul>
+            <div class="username-list">
+                <h2 class="usernames-header">Usernames</h2>
+                <ul>
+                    <li class="usernames" v-for="(user, index) in usersData" :key="index">{{ user.username }}</li>
+                </ul>
+            </div>
         </nav>
     </div>
 </template>
@@ -102,6 +107,11 @@ export default {
         navBarList4.style.visibility = "visible";
         listIcon1.style.color = "#d2cca1";
         },
+    },
+    computed: {
+        usersData(){
+            return this.$store.state.usersData;
+        }
     },
 }
 </script>
@@ -237,5 +247,47 @@ export default {
     width: 20px;
     border-top-right-radius: 25px;
     box-shadow: 0 -20px 0 0 #080710;
+}
+/* Username list */
+.username-list {
+    position: relative;
+    background: #080710;
+    width: 60%;
+    margin: auto;
+    border-radius: 4px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.usernames-header {
+    color: #d2cca1;
+    background: #080710;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.username-list ul:hover li {
+    opacity: 1;
+}
+.usernames {
+    list-style: none;
+    padding: 10px;
+    width: 100%;
+    background: #080710;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s;
+    font-size: 14px;
+    color: #d2cca1;
+    border-top: 1px solid #d2cca1;
+}
+.usernames:hover {
+    transform: scale(1.1);
+    z-index: 5;
+    background: #080710;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    color: #d2cca1;
+    opacity: 1;
+    cursor: pointer;
 }
 </style>

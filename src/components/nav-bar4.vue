@@ -19,6 +19,12 @@
                 <li @click="activatedList3()" class="nav-item li3"><font-awesome-icon class="listIcon3 iconList" icon="fas fa-database"/> Storage Space</li>
                 <li  class="nav-item li4 active"><font-awesome-icon class="listIcon4 iconList" icon="fas fa-file-alt"/> File Management</li>
             </ul>
+            <div class="username-list">
+                <h2 class="usernames-header">Usernames</h2>
+                <ul>
+                    <li class="usernames" v-for="(user, index) in usersData" :key="index">{{ user.username }}</li>
+                </ul>
+            </div>
         </nav>
     </div>
 </template>
@@ -101,6 +107,11 @@ export default {
         navBarList4.style.visibility = "visible";
         listIcon4.style.color = "#d2cca1";
         },
+    },
+    computed: {
+        usersData(){
+            return this.$store.state.usersData;
+        }
     },
 }
 </script>
