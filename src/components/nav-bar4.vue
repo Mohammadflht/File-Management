@@ -22,7 +22,7 @@
             <div class="username-list">
                 <h2 class="usernames-header">Usernames</h2>
                 <ul>
-                    <li class="usernames" v-for="(user, index) in usersData" :key="index">{{ user.username }}</li>
+                    <li class="usernames" v-for="(user, index) in usersData" :key="index" @click="selectUser(user)">{{ user.username }}</li>
                 </ul>
             </div>
         </nav>
@@ -33,7 +33,7 @@
 export default {
     data() {
     return {
-        userUsername: 'mohammadflht'
+        visitedDestinations: new Set()
     }
     },
     methods: {
@@ -64,6 +64,7 @@ export default {
         let listIcon2 = document.querySelector(".listIcon2");
         let listIcon3 = document.querySelector(".listIcon3");
         let listIcon4 = document.querySelector(".listIcon4");
+        let usernameList = document.querySelector(".username-list");
 
 
         navigationPanel.style.width = "4%";
@@ -76,6 +77,7 @@ export default {
         navBarList2.style.visibility = "hidden";
         navBarList3.style.visibility = "hidden";
         navBarList4.style.visibility = "hidden";
+        usernameList.style.visibility = "hidden";
         listIcon1.style.visibility = "visible";
         listIcon2.style.visibility = "visible";
         listIcon3.style.visibility = "visible";
@@ -94,6 +96,7 @@ export default {
         let navBarList3 = document.querySelector(".li3");
         let navBarList4 = document.querySelector(".li4");
         let listIcon4 = document.querySelector(".listIcon4");
+        let usernameList = document.querySelector(".username-list");
 
         navigationPanel.style.width = "13%";
         userProfilePicture.style.visibility = "visible";
@@ -105,14 +108,42 @@ export default {
         navBarList2.style.visibility = "visible";
         navBarList3.style.visibility = "visible";
         navBarList4.style.visibility = "visible";
+        usernameList.style.visibility = "visible";
         listIcon4.style.color = "#d2cca1";
+        },
+        selectUser(user) {
+            let destination;
+        if (user.type === 'user') {
+            destination = '/user-panel/file-management';
+        } else if (user.type === 'admin') {
+            destination = '/admin-panel/file-management';
+        }
+        if (destination && destination !== this.currentRoute && !this.visitedDestinations.has(destination)) {
+        this.$router.push(destination);
+        this.visitedDestinations.add(destination);
+        }
+        this.userUsername = user.username;
+        this.$store.commit('setUserUsername', user.username);
+        localStorage.setItem('userUsername', user.username);
         },
     },
     computed: {
         usersData(){
             return this.$store.state.usersData;
+        },
+        userUsername() {
+            return this.$store.state.userUsername;
+        },
+        currentRoute() {
+            return this.$route.path;
         }
     },
+    mounted() {
+            const userUsername = localStorage.getItem('userUsername');
+            if (userUsername) {
+                this.$store.commit('setUserUsername', userUsername);
+            }
+    }
 }
 </script>
 

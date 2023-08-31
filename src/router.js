@@ -6,6 +6,7 @@ import UserManagement from './components/UserManagement.vue'
 import UserGroup from './components/UserGroup.vue'
 import StorageSpace from './components/StorageSpace.vue'
 import FileManagement from './components/FileManagement.vue'
+import UserPanel from './components/UserPanel.vue'
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,7 @@ const routes =[
     {path: '/admin-panel/user-group', component: UserGroup},
     {path: '/admin-panel/storage-space', component: StorageSpace},
     {path: '/admin-panel/file-management', component: FileManagement},
+    {path: '/user-panel/file-management', component: UserPanel},
 ];
 const router = new VueRouter({
     routes

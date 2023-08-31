@@ -124,7 +124,7 @@ export default {
             }, 3000);
             return;
         }
-        if (this.newRecord.username && this.newRecord.username.length >= 5 && (this.newRecord.firstName || this.newRecord.lastName || this.newRecord.type || this.newRecord.usergroup || true)) {
+        if (this.newRecord.username && this.newRecord.username.length >= 5 && this.newRecord.type && (this.newRecord.type === 'admin' || this.newRecord.type === 'user') && (this.newRecord.firstName || this.newRecord.lastName || this.newRecord.usergroup || true)) {
             const newUser = { ...this.newRecord, editing: false };
             this.$store.commit('addUser', newUser);
             this.newRecord = { username: '', firstName: '', lastName: '', type: '', usergroup: ''};

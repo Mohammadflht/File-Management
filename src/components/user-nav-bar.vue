@@ -11,13 +11,12 @@
                 <button @click="logOut()" type="button" class="logout-btn">Log Out</button>
             </div>
         </div>
-
         <nav class="side-nav">
             <ul class="nav-menu">
-                <li @click="activatedList1()" class="nav-item li1"><font-awesome-icon class="listIcon1 iconList" icon="fas fa-user-cog"/> User Management</li>
-                <li @click="activatedList2()" class="nav-item li2"><font-awesome-icon class="listIcon2 iconList" icon="fas fa-user-group"/> User Group</li>
-                <li  class="nav-item li3 active"><font-awesome-icon class="listIcon3 iconList" icon="fas fa-database"/> Storage Space</li>
-                <li @click="activatedList4()" class="nav-item li4"><font-awesome-icon class="listIcon4 iconList" icon="fas fa-file-alt"/> File Management</li>
+                <li @click="activatedList1()" class="nav-item li11"><font-awesome-icon class="listIcon1 iconList" icon="fas fa-user-cog"/> User Management</li>
+                <li @click="activatedList2()" class="nav-item li22"><font-awesome-icon class="listIcon2 iconList" icon="fas fa-user-group"/> User Group</li>
+                <li @click="activatedList3()" class="nav-item li33"><font-awesome-icon class="listIcon3 iconList" icon="fas fa-database"/> Storage Space</li>
+                <li  class="nav-item li4 active"><font-awesome-icon class="listIcon4 iconList" icon="fas fa-file-alt"/> File Management</li>
             </ul>
             <div class="username-list">
                 <h2 class="usernames-header">Usernames</h2>
@@ -43,8 +42,8 @@ export default {
     activatedList2() {
         this.$router.push('./user-group');
         },
-    activatedList4() {
-        this.$router.push('./file-management');
+    activatedList3() {
+        this.$router.push('./storage-space');
         },
     logOut() {
         this.$router.push('/');
@@ -81,8 +80,8 @@ export default {
         listIcon1.style.visibility = "visible";
         listIcon2.style.visibility = "visible";
         listIcon3.style.visibility = "visible";
-        listIcon3.style.color = "#080710";
         listIcon4.style.visibility = "visible";
+        listIcon4.style.color = "#080710";
         },
     openNavigation() {
         let navigationPanel = document.querySelector("#nav-bar-container");
@@ -95,7 +94,7 @@ export default {
         let navBarList2 = document.querySelector(".li2");
         let navBarList3 = document.querySelector(".li3");
         let navBarList4 = document.querySelector(".li4");
-        let listIcon3 = document.querySelector(".listIcon3");
+        let listIcon4 = document.querySelector(".listIcon4");
         let usernameList = document.querySelector(".username-list");
 
         navigationPanel.style.width = "13%";
@@ -109,7 +108,7 @@ export default {
         navBarList3.style.visibility = "visible";
         navBarList4.style.visibility = "visible";
         usernameList.style.visibility = "visible";
-        listIcon3.style.color = "#d2cca1";
+        listIcon4.style.color = "#d2cca1";
         },
         selectUser(user) {
             let destination;
@@ -278,5 +277,8 @@ export default {
     width: 20px;
     border-top-right-radius: 25px;
     box-shadow: 0 -20px 0 0 #080710;
+}
+.li11, .li22, .li33 {
+    visibility: hidden;
 }
 </style>

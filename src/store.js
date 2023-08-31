@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-
+        visitedDestinations: new Set(),
+        userUsername: '',
         usersData: JSON.parse(localStorage.getItem('usersData')) || [],
     },
     mutations: {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
         setUsersData(state, data) {
             state.usersData = data;
             localStorage.setItem('usersData', JSON.stringify(state.usersData));
+        },
+        setUserUsername(state, username) {
+            state.userUsername = username;
         },
     },
     actions: {
