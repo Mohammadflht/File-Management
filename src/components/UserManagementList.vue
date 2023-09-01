@@ -6,8 +6,7 @@
         <label>
             <input type="checkbox" class="alertCheckbox" autocomplete="off" />
             <div class="alert add-user-error">
-                <span class="alertText">This user is already defined
-                <br class="clear"/></span>
+                <span class="alertText"><br class="clear"/></span>
             </div>
         </label>
 
@@ -119,10 +118,25 @@ export default {
         if (existingRecord) {
             let errorMessage = document.querySelector('.alert');
             errorMessage.style.display = 'flex';
+            errorMessage.innerHTML = 'This user is already defined';
             setTimeout(() => {
                 errorMessage.style.display = 'none';
             }, 3000);
             return;
+        }else if(this.newRecord.username.length < 5) {
+            let errorMessage = document.querySelector('.alert');
+            errorMessage.innerHTML = "Username must at least 5 characters "
+            errorMessage.style.display = 'flex';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 3000);
+        }else if(this.newRecord.type !== 'admin' && this.newRecord.type !== 'user') {
+            let errorMessage = document.querySelector('.alert');
+            errorMessage.innerHTML = "Type should be Admin or User"
+            errorMessage.style.display = 'flex';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 3000);
         }
         if (this.newRecord.username && this.newRecord.username.length >= 5 && this.newRecord.type && (this.newRecord.type === 'admin' || this.newRecord.type === 'user') && (this.newRecord.firstName || this.newRecord.lastName || this.newRecord.usergroup || true)) {
             const newUser = { ...this.newRecord, editing: false };
@@ -137,6 +151,7 @@ export default {
         let usersList = document.querySelector(".user-table");
         usersList.style.filter = "blur(0px)";
         this.showDialog = false;
+        this.newRecord = { username: '', firstName: '', lastName: '', type: '', usergroup: ''};
     },
     removeRow(index) {
         this.$store.commit('removeUser', index);
