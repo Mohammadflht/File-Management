@@ -12,7 +12,7 @@
 
             <table v-if="showDialog" id="keywords" cellspacing="0" cellpadding="0">
     <thead>
-    <tr>
+    <tr :class="adminColor">
         <th>Username</th>
         <th>First name</th>
         <th>Last name</th>
@@ -22,7 +22,7 @@
     </tr>
     </thead>
     <tbody class="user-records-table-body">
-    <tr>
+    <tr :class="adminColor">
         <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.username"></td>
         <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.firstName"></td>
         <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.lastName"></td>
@@ -48,7 +48,7 @@
 
     <table id="keywords" class="user-table" cellspacing="0" cellpadding="0">
     <thead v-if="showHeader">
-    <tr>
+    <tr :class="adminColor">
         <th>Username</th>
         <th>First name</th>
         <th>Last name</th>
@@ -58,7 +58,7 @@
     </tr>
     </thead>
     <tbody class="user-records-table-body users-list">
-    <tr v-for="(row, index) in usersData" :key="index" class="user-table-row">
+    <tr v-for="(row, index) in usersData" :key="index" class="user-table-row" :class="adminColor">
 
         <td class="user-table-data">{{row.username}}</td>
 
@@ -118,6 +118,9 @@ export default {
         },
         showHeader(){
             return this.usersData.length > 0;
+        },
+        adminColor() {
+            return this.$store.state.adminColor;
         },
     },
     methods: {

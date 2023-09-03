@@ -379,6 +379,20 @@ export default {
 .color3 {
     background-color: #20a7b7e8 !important;
 }
+
+tbody tr.color3 {
+    background-color: #080710 !important;
+    color: #20a8b7;
+}
+tbody tr.color2 {
+    background-color: #080710 !important;
+    color: #89BBFE;
+}
+tbody tr.color1 {
+    background-color: #080710 !important;
+    color: #d2cca1;
+}
+
 .color3 ul li, .color3 h2 {
     color: #20a8b7 !important;
     border-top-color: #20a8b7;

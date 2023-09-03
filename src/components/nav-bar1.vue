@@ -25,9 +25,9 @@
                 </ul>
             </div>
             <div class="color-themes-container">
-                <button :class="[adminColor === 'color1' ? 'primary-color1' : '']" class="color-theme-btn" @click="$store.commit('setColorThemeAdmin', 'color1')">color1</button>
-                <button :class="[adminColor === 'color2' ? 'primary-color2' : '']" class="color-theme-btn" @click="$store.commit('setColorThemeAdmin', 'color2')">color2</button>
-                <button :class="[adminColor === 'color3' ? 'primary-color3' : '']" class="color-theme-btn" @click="$store.commit('setColorThemeAdmin', 'color3')">color3</button>
+                <button :class="[adminColor === 'color1' ? 'primary-color1 color1-user-management color1-user-header' : '']" class="color-theme-btn" @click="$store.commit('setColorThemeAdmin', 'color1')">color1</button>
+                <button :class="[adminColor === 'color2' ? 'primary-color2 color2-user-management color2-user-header' : '']" class="color-theme-btn" @click="$store.commit('setColorThemeAdmin', 'color2')">color2</button>
+                <button :class="[adminColor === 'color3' ? 'primary-color3 color3-user-management color3-user-header' : '']" class="color-theme-btn" @click="$store.commit('setColorThemeAdmin', 'color3')">color3</button>
             </div>
         </nav>
     </div>
@@ -329,4 +329,5 @@ export default {
     opacity: 1;
     cursor: pointer;
 }
+
 </style>
