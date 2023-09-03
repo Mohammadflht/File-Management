@@ -1,5 +1,5 @@
 <template>
-    <div id="nav-bar-container">
+    <div id="nav-bar-container" :class="adminColor">
         <div class="user-profile-toggle">
             <font-awesome-icon @click="closeNavigation()" icon="fas fa-times" class="close-nav-bar-icon"/>
             <font-awesome-icon @click="openNavigation()" icon="fas fa-bars" class="open-nav-bar-icon"/>
@@ -24,6 +24,11 @@
                 <ul>
                     <li class="usernames" v-for="(user, index) in usersData" :key="index" @click="selectUser(user)">{{ user.username }}</li>
                 </ul>
+            </div>
+            <div class="color-themes-container">
+                <button :class="[adminColor === 'color1' ? 'primary-color1' : '']" class="color-theme-btn" @click="$store.commit('setColorThemeAdmin', 'color1')">color1</button>
+                <button :class="[adminColor === 'color2' ? 'primary-color2' : '']" class="color-theme-btn" @click="$store.commit('setColorThemeAdmin', 'color2')">color2</button>
+                <button :class="[adminColor === 'color3' ? 'primary-color3' : '']" class="color-theme-btn" @click="$store.commit('setColorThemeAdmin', 'color3')">color3</button>
             </div>
         </nav>
     </div>
@@ -136,7 +141,10 @@ export default {
         },
         currentRoute() {
             return this.$route.path;
-        }
+        },
+        adminColor() {
+            return this.$store.state.adminColor;
+        },
     },
     mounted() {
             const userUsername = localStorage.getItem('userUsername');

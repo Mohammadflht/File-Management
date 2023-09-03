@@ -8,6 +8,8 @@ export default new Vuex.Store({
         visitedDestinations: new Set(),
         userUsername: '',
         usersData: JSON.parse(localStorage.getItem('usersData')) || [],
+        color: 'color1',
+        adminColor: 'color1',
     },
     mutations: {
         addUser(state, newUser) {
@@ -33,12 +35,22 @@ export default new Vuex.Store({
         setUserUsername(state, username) {
             state.userUsername = username;
         },
+        setColorTheme(state, color) {
+            state.color = color;
+            localStorage.setItem('color', color);
+        },
+        setColorThemeAdmin(state, adminColor) {
+            state.adminColor = adminColor;
+            localStorage.setItem('adminColor', adminColor);
+        },
+
     },
     actions: {
     getUsersData({ commit }) {
         const data = JSON.parse(localStorage.getItem('usersData')) || [];
         commit('setUsersData', data);
-    }
     },
-    getters: {},
+    },
+    getters: {
+    },
 })

@@ -1,5 +1,5 @@
 <template>
-    <div id="nav-bar-container">
+    <div id="nav-bar-container" :class="color">
         <div class="user-profile-toggle">
             <font-awesome-icon @click="closeNavigation()" icon="fas fa-times" class="close-nav-bar-icon"/>
             <font-awesome-icon @click="openNavigation()" icon="fas fa-bars" class="open-nav-bar-icon"/>
@@ -24,7 +24,13 @@
                     <li class="usernames" v-for="(user, index) in usersData" :key="index" @click="selectUser(user)">{{ user.username }}</li>
                 </ul>
             </div>
+            <div class="color-themes-container">
+                <button :class="[color === 'color1' ? 'primary-color1' : '']" class="color-theme-btn" @click="$store.commit('setColorTheme', 'color1')">color1</button>
+                <button :class="[color === 'color2' ? 'primary-color2' : '']" class="color-theme-btn" @click="$store.commit('setColorTheme', 'color2')">color2</button>
+                <button :class="[color === 'color3' ? 'primary-color3' : '']" class="color-theme-btn" @click="$store.commit('setColorTheme', 'color3')">color3</button>
+            </div>
         </nav>
+
     </div>
 </template>
 
@@ -32,7 +38,7 @@
 export default {
     data() {
     return {
-        visitedDestinations: new Set()
+        visitedDestinations: new Set(),
     }
     },
     methods: {
@@ -111,7 +117,7 @@ export default {
         listIcon4.style.color = "#d2cca1";
         },
         selectUser(user) {
-            let destination;
+        let destination;
         if (user.type === 'user') {
             destination = '/user-panel/file-management';
         } else if (user.type === 'admin') {
@@ -135,14 +141,17 @@ export default {
         },
         currentRoute() {
             return this.$route.path;
-        }
+        },
+        color() {
+            return this.$store.state.color;
+        },
     },
     mounted() {
             const userUsername = localStorage.getItem('userUsername');
             if (userUsername) {
                 this.$store.commit('setUserUsername', userUsername);
             }
-    }
+        }
 }
 </script>
 
@@ -281,4 +290,119 @@ export default {
 .li11, .li22, .li33 {
     visibility: hidden;
 }
+
+
+.primary-color1 {
+    background-color: #d2cca1e8;
+}
+
+.primary-color2 {
+    background-color: #89BBFEe8;
+}
+
+.primary-color3 {
+    background-color: #177e89e8;
+}
+
+.color-themes-container {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    margin-top: 40px;
+    padding: 10px;
+    background-color: #080710;
+    border-radius: 4px;
+
+}
+.color-theme-btn {
+    border: none;
+    color: #080710;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 24%;
+    height: 26px;
+    margin: 0 1%;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    background-color: #464343;
+}
+.primary-color1 {
+    background-color: #d2cca1;
+}
+.primary-color1:hover {
+    background-color: #d2cca1;
+}
+.primary-color2 {
+    background-color: #89BBFE;
+}
+.primary-color2:hover {
+    background-color: #89BBFE;
+}
+.primary-color3 {
+    background-color: #20a8b7;
+}
+.primary-color3:hover {
+    background-color: #177e89;
+}
+.color1 {
+    background-color: #d2cca1e8 !important;
+}
+.color1 ul li, .color1 h2 {
+    color: #d2cca1 !important;
+    border-top-color: #d2cca1;
+}
+.color1 .li1, .color2 .li1, .color3 .li1{
+    color: #080710 !important;
+}
+.color1 .li2, .color2 .li2, .color3 .li2{
+    color: #080710 !important;
+}
+.color1 .li3, .color2 .li3, .color3 .li3{
+    color: #080710 !important;
+}
+.color2 {
+    background-color: #89BBFEe8 !important;
+}
+.color2 ul li, .color2 h2 {
+    color: #89BBFE !important;
+    border-top-color: #89BBFE;
+}
+.color3 {
+    background-color: #20a7b7e8 !important;
+}
+.color3 ul li, .color3 h2 {
+    color: #20a8b7 !important;
+    border-top-color: #20a8b7;
+}
+.color1 .select-list {
+    color: #d2cca1 !important;
+}
+.color1 .last-active {
+    color: #080710 !important;
+}
+.color2 .select-list {
+    color: #89BBFE !important;
+}
+.color2 .last-active {
+    color: #080710 !important;
+}
+.color3 .select-list {
+    color: #20a8b7 !important;
+}
+.color3 .last-active {
+    color: #080710 !important;
+}
+.gold {
+    background-color: #d2cca1e8 !important;
+}
+
 </style>

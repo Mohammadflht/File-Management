@@ -139,7 +139,7 @@ export default {
             }, 3000);
         }
         if (this.newRecord.username && this.newRecord.username.length >= 5 && this.newRecord.type && (this.newRecord.type === 'admin' || this.newRecord.type === 'user') && (this.newRecord.firstName || this.newRecord.lastName || this.newRecord.usergroup || true)) {
-            const newUser = { ...this.newRecord, editing: false };
+            const newUser = { ...this.newRecord, editing: false, color: 'color1' };
             this.$store.commit('addUser', newUser);
             this.newRecord = { username: '', firstName: '', lastName: '', type: '', usergroup: ''};
             this.showDialog = false;
