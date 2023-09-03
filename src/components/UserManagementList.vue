@@ -26,7 +26,14 @@
         <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.username"></td>
         <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.firstName"></td>
         <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.lastName"></td>
-        <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.type"></td>
+        <td class="user-type-select">
+            <!-- <input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.type"> -->
+                <label class="user-type-lable" for="admin">admin</label>
+                <input type="radio" name="usertype" id="user-type-input" v-model.trim="newRecord.type" value="admin">
+                <label class="user-type-lable" for="user">user</label>
+                <input type="radio" name="usertype" id="user-type-input" v-model.trim="newRecord.type" value="user">
+
+        </td>
         <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.usergroup"></td>
         <td class="user-table-data">
             <font-awesome-icon @click="addRow()" class="user-records-add-icon user-records-icons" icon="fas fa-plus" title="Add"/>
@@ -62,7 +69,15 @@
         <td v-else><input type="text" v-model="row.lastName" class="user-table-data"></td>
 
         <td v-if="!row.editing" class="user-table-data">{{ row.type }}</td>
-        <td v-else><input type="text" v-model="row.type" class="user-table-data"></td>
+        <td v-else>
+            <!-- <input type="text" v-model="row.type" class="user-table-data"> -->
+            <div class="edit-type">
+                <label class="user-type-lable" for="admin">admin</label>
+                <input type="radio" name="usertype" id="user-type-input" v-model="row.type" value="admin">
+                <label class="user-type-lable" for="user">user</label>
+                <input type="radio" name="usertype" id="user-type-input" v-model="row.type" value="user">
+            </div>
+        </td>
 
         <td v-if="!row.editing" class="user-table-data">{{ row.usergroup }}</td>
         <td v-else><input type="text" v-model="row.usergroup" class="user-table-data"></td>
@@ -333,6 +348,32 @@ export default {
     background-color: #1d1d1faa;
     color: #d2cca1b2;
     outline: none;
+}
+.user-type-select {
+    background-color: #1d1d1faa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #d2cca123;
+    padding: 0 12px;
+}
+#user-type-input{
+    width: 20px;
+    margin: 0 4px;
+    accent-color: red;
+}
+.user-type-lable {
+    color: #efefef;
+    font-size: 14px;
+    margin: auto;
+}
+.edit-type {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #d2cca180;
 }
 .users-list input {
     background-color: #080710;
