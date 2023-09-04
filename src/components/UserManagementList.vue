@@ -45,6 +45,10 @@
     </tbody>
     </table>
 
+    <section class="audition-info">
+
+    </section>
+
 
     <table id="keywords" class="user-table" cellspacing="0" cellpadding="0">
     <thead v-if="showHeader">
@@ -54,6 +58,10 @@
         <th>Last name</th>
         <th>Type</th>
         <th>User group</th>
+        <th>Creator</th>
+        <th>Creation time</th>
+        <th>Last Modifier</th>
+        <th>Last Modification time</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -81,6 +89,11 @@
 
         <td v-if="!row.editing" class="user-table-data">{{ row.usergroup }}</td>
         <td v-else><input type="text" v-model="row.usergroup" class="user-table-data"></td>
+
+        <td class="user-table-data">{{row.creator}}</td>
+        <td class="user-table-data">{{row.creationTime}}</td>
+        <td class="user-table-data">{{row.lastModifier }}</td>
+        <td class="user-table-data">{{row.lastModificationTime}}</td>
 
         <td class="user-table-data">
             <font-awesome-icon class="user-records-edit-icon user-records-icons" icon="fas fa-edit" @click="editRow(index)" v-if="!row.editing" title="Edit"/>
@@ -129,7 +142,8 @@ export default {
             this.$store.commit('editUser', index);
         },
         saveRow(index) {
-            this.$store.commit('saveUser', index);
+            // this.$store.commit('saveUser', index);
+            this.$store.commit('saveUser', {index: index, username: this.$store.state.userUsername});
         },
         addRow() {
         const existingRecord = this.usersData.find(record => record.username === this.newRecord.username);
@@ -157,7 +171,14 @@ export default {
             }, 3000);
         }
         if (this.newRecord.username && this.newRecord.username.length >= 5 && this.newRecord.type && (this.newRecord.type === 'admin' || this.newRecord.type === 'user') && (this.newRecord.firstName || this.newRecord.lastName || this.newRecord.usergroup || true)) {
-            const newUser = { ...this.newRecord, editing: false, color: 'color1' };
+            // const newUser = { ...this.newRecord, editing: false, color: 'color1' };
+            // this.$store.commit('addUser', newUser);
+            // this.newRecord = { username: '', firstName: '', lastName: '', type: '', usergroup: ''};
+            // this.showDialog = false;
+            // let usersList = document.querySelector(".user-table");
+            // usersList.style.filter = "blur(0px)";
+            const now = new Date();
+            const newUser = { ...this.newRecord, editing: false, color: 'color1', creationTime: now.toLocaleString(), creator: this.$store.state.userUsername, lastModificationTime: now.toLocaleString(), lastModifier: this.$store.state.userUsername };
             this.$store.commit('addUser', newUser);
             this.newRecord = { username: '', firstName: '', lastName: '', type: '', usergroup: ''};
             this.showDialog = false;
@@ -334,9 +355,11 @@ export default {
     margin-left: 12px;
 }
 #keywords {
+    /* width: 50%; */
     margin: 0 auto;
     font-size: 1.2em;
     margin-top: 45px;
+    /* overflow: scroll; */
 }
 #keywords thead {
     background: #d2cca1e8;
@@ -387,8 +410,7 @@ export default {
     width: 100%;
 }
 .user-table-data{
-    width: 160px;
-    height: 50px;
+    height: 100%;
     text-align: center;
     padding: 15px 10px;
     border: 1px solid #d2cca12c;
@@ -403,8 +425,4 @@ export default {
 th, td {
     font-size: 16px;
 }
-
-
-
-
 </style>

@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         visitedDestinations: new Set(),
-        userUsername: '',
+        userUsername: 'admin',
         usersData: JSON.parse(localStorage.getItem('usersData')) || [],
         color: 'color1',
         adminColor: 'color1',
@@ -24,8 +24,16 @@ export default new Vuex.Store({
             state.usersData[index].editing = true;
             localStorage.setItem('usersData', JSON.stringify(state.usersData));
         },
-        saveUser(state, index) {
-            state.usersData[index].editing = false;
+        saveUser(state, payload) {
+            // const now = new Date();
+            // state.usersData[index].lastModificationTime = now.toLocaleString();
+            // state.usersData[index].lastModifier = this.username;
+            // state.usersData[index].editing = false;
+            // localStorage.setItem('usersData', JSON.stringify(state.usersData));
+            const now = new Date();
+            state.usersData[payload.index].lastModificationTime = now.toLocaleString();
+            state.usersData[payload.index].lastModifier = payload.username;
+            state.usersData[payload.index].editing = false;
             localStorage.setItem('usersData', JSON.stringify(state.usersData));
         },
         setUsersData(state, data) {
