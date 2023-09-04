@@ -178,7 +178,8 @@ export default {
             // let usersList = document.querySelector(".user-table");
             // usersList.style.filter = "blur(0px)";
             const now = new Date();
-            const newUser = { ...this.newRecord, editing: false, color: 'color1', creationTime: now.toLocaleString(), creator: this.$store.state.userUsername, lastModificationTime: now.toLocaleString(), lastModifier: this.$store.state.userUsername };
+            const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+            const newUser = { ...this.newRecord, editing: false, color: 'color1', creationTime: now.toLocaleTimeString([], options), creator: this.$store.state.userUsername, lastModificationTime: now.toLocaleTimeString([], options), lastModifier: this.$store.state.userUsername };
             this.$store.commit('addUser', newUser);
             this.newRecord = { username: '', firstName: '', lastName: '', type: '', usergroup: ''};
             this.showDialog = false;
@@ -223,6 +224,7 @@ export default {
     box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
     position: absolute;
     right: 0;
+    overflow-x: scroll;
 }
 .add-user-btn {
     width: 120px;

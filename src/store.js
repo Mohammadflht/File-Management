@@ -31,7 +31,8 @@ export default new Vuex.Store({
             // state.usersData[index].editing = false;
             // localStorage.setItem('usersData', JSON.stringify(state.usersData));
             const now = new Date();
-            state.usersData[payload.index].lastModificationTime = now.toLocaleString();
+            const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+            state.usersData[payload.index].lastModificationTime = now.toLocaleTimeString([], options);
             state.usersData[payload.index].lastModifier = payload.username;
             state.usersData[payload.index].editing = false;
             localStorage.setItem('usersData', JSON.stringify(state.usersData));
