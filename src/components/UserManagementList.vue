@@ -225,6 +225,23 @@ export default {
     position: absolute;
     right: 0;
     overflow-x: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+::-webkit-scrollbar {
+    visibility: hidden;
+    width: 8px;
+    height: 8px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 12px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #c3c3c3;
+    border-radius: 12px;
 }
 .add-user-btn {
     width: 120px;
