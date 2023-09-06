@@ -403,17 +403,47 @@ tbody tr.color1 {
 .color1 .last-active {
     color: #080710 !important;
 }
+.color1 select {
+    color: #d2cca1 !important;
+    border-color: #d2cca1 !important;
+}
+.color1 #user-type-input {
+    accent-color: #d2cca1 !important;
+}
+.color1 input {
+    color: #d2cca1 !important;
+}
 .color2 .select-list {
     color: #89BBFE !important;
 }
 .color2 .last-active {
     color: #080710 !important;
 }
+.color2 select {
+    color: #89BBFE !important;
+    border-color: #89BBFE !important;
+}
+.color2 #user-type-input {
+    accent-color: #89BBFE !important;
+}
+.color2 input {
+    color: #89BBFE !important;
+}
 .color3 .select-list {
     color: #20a8b7 !important;
 }
 .color3 .last-active {
     color: #080710 !important;
+}
+.color3 select {
+    color: #20a8b7 !important;
+    border-color: #20a8b7 !important;
+}
+.color3 #user-type-input {
+    accent-color: #20a8b7 !important;
+}
+.color3 input {
+    color: #25c9db !important;
 }
 .gold {
     background-color: #d2cca1e8 !important;
