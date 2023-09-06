@@ -8,6 +8,7 @@ export default new Vuex.Store({
         visitedDestinations: new Set(),
         userUsername: 'admin',
         usersData: JSON.parse(localStorage.getItem('usersData')) || [],
+        groupData: JSON.parse(localStorage.getItem('groupData')) || [],
         color: 'color1',
         adminColor: 'color1',
     },
@@ -16,26 +17,41 @@ export default new Vuex.Store({
             state.usersData.push(newUser);
             localStorage.setItem('usersData', JSON.stringify(state.usersData));
         },
+        addGroup(state, newGroup) {
+            state.groupData.push(newGroup);
+            localStorage.setItem('groupData', JSON.stringify(state.groupData));
+        },
         removeUser(state, index) {
             state.usersData.splice(index, 1);
             localStorage.setItem('usersData', JSON.stringify(state.usersData));
+        },
+        removeGroup(state, index) {
+            state.groupData.splice(index, 1);
+            localStorage.setItem('groupData', JSON.stringify(state.groupData));
         },
         editUser(state, index) {
             state.usersData[index].editing = true;
             localStorage.setItem('usersData', JSON.stringify(state.usersData));
         },
+        editGroup(state, index) {
+            state.groupData[index].editing = true;
+            localStorage.setItem('groupData', JSON.stringify(state.groupData));
+        },
         saveUser(state, payload) {
-            // const now = new Date();
-            // state.usersData[index].lastModificationTime = now.toLocaleString();
-            // state.usersData[index].lastModifier = this.username;
-            // state.usersData[index].editing = false;
-            // localStorage.setItem('usersData', JSON.stringify(state.usersData));
             const now = new Date();
             const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
             state.usersData[payload.index].lastModificationTime = now.toLocaleTimeString([], options);
             state.usersData[payload.index].lastModifier = payload.username;
             state.usersData[payload.index].editing = false;
             localStorage.setItem('usersData', JSON.stringify(state.usersData));
+        },
+        saveGroup(state, payload) {
+            const now = new Date();
+            const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+            state.groupData[payload.index].lastModificationTime = now.toLocaleTimeString([], options);
+            state.groupData[payload.index].lastModifier = payload.username;
+            state.groupData[payload.index].editing = false;
+            localStorage.setItem('groupData', JSON.stringify(state.groupData));
         },
         setUsersData(state, data) {
             state.usersData = data;

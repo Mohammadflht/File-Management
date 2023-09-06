@@ -1,17 +1,19 @@
 <template>
-    <div id="user-management">\
+    <div id="user-management">
         <navBar2></navBar2>
-        <!-- <panelHeader></panelHeader> -->
+        <GroupList></GroupList>
     </div>
 </template>
 
 <script>
 // import panelHeader from './panel-header.vue';
 import navBar2 from './nav-bar2.vue';
+import GroupList from './UserGroupList.vue';
 export default {
     components: {
         // panelHeader,
         navBar2,
+        GroupList,
     },
     data() {
     return {

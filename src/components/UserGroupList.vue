@@ -1,11 +1,11 @@
 <template>
-    <div id="wrapper">
+    <div id="group-page">
 
-        <button class="add-user-btn" @click="showDialogs()">Add User</button>
+        <button class="add-user-btn" @click="showDialogs()">Add Group</button>
 
         <label>
             <input type="checkbox" class="alertCheckbox" autocomplete="off" />
-            <div class="alert add-user-error">
+            <div class="group-alert add-user-error">
                 <span class="alertText"><br class="clear"/></span>
             </div>
         </label>
@@ -13,42 +13,28 @@
             <table v-if="showDialog" id="keywords" cellspacing="0" cellpadding="0">
     <thead>
     <tr :class="adminColor">
-        <th>Username</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Type</th>
-        <th>User group</th>
+        <th>Group name</th>
+        <th>Group user</th>
         <th>Add</th>
     </tr>
     </thead>
     <tbody class="user-records-table-body">
     <tr :class="adminColor">
-        <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.username"></td>
-        <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.firstName"></td>
-        <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.lastName"></td>
-        <td class="user-type-select">
-            <!-- <input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.type"> -->
-                <label class="user-type-lable" for="admin">admin</label>
-                <input type="radio" name="usertype" id="user-type-input" v-model.trim="newRecord.type" value="admin">
-                <label class="user-type-lable" for="user">user</label>
-                <input type="radio" name="usertype" id="user-type-input" v-model.trim="newRecord.type" value="user">
+        <td><input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.groupname"></td>
 
-        </td>
         <td class="select-td">
-            <!-- <input class="create-user-input" placeholder="New" type="text" v-model.trim="newRecord.usergroup"> -->
-
             <div class="form-group">
-                <select id="usergroup" v-model="newRecord.usergroup">
-                    <option value="">Select Group</option>
-                    <option v-for="group in userGroups" :value="group.groupname" :key="group">{{ group.groupname }}</option>
+                <select id="groupuser" v-model="newRecord.groupuser">
+                    <option value="">Select User</option>
+                    <option v-for="user in usersData" :value="user.username" :key="user">{{ user.username }}</option>
                 </select>
             </div>
         </td>
+
         <td class="user-table-data">
             <font-awesome-icon @click="addRow()" class="user-records-add-icon user-records-icons" icon="fas fa-plus" title="Add"/>
             <font-awesome-icon @click="addRowCancle()" class="user-records-cancle-add-icon user-records-icons" icon="fas fa-remove" title="Cancle"/>
         </td>
-        <!-- <td class="user-table-data"></td> -->
     </tr>
 
     </tbody>
@@ -62,11 +48,8 @@
     <table id="keywords" class="user-table" cellspacing="0" cellpadding="0">
     <thead v-if="showHeader">
     <tr :class="adminColor">
-        <th>Username</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Type</th>
-        <th>User group</th>
+        <th>Group name</th>
+        <th>Group users</th>
         <th>Creator</th>
         <th>Creation time</th>
         <th>Last Modifier</th>
@@ -75,34 +58,18 @@
     </tr>
     </thead>
     <tbody class="user-records-table-body users-list">
-    <tr v-for="(row, index) in usersData" :key="index" class="user-table-row" :class="adminColor">
+    <tr v-for="(row, index) in groupData" :key="index" class="user-table-row" :class="adminColor">
 
-        <td class="user-table-data">{{row.username}}</td>
+        <td v-if="!row.editing" class="user-table-data">{{ row.groupname }}</td>
+        <td v-else><input type="text" v-model="row.groupname" class="user-table-data"></td>
 
-        <td v-if="!row.editing" class="user-table-data">{{ row.firstName }}</td>
-        <td v-else><input type="text" v-model="row.firstName" class="user-table-data"></td>
 
-        <td v-if="!row.editing" class="user-table-data">{{ row.lastName }}</td>
-        <td v-else><input type="text" v-model="row.lastName" class="user-table-data"></td>
-
-        <td v-if="!row.editing" class="user-table-data">{{ row.type }}</td>
+        <td v-if="!row.editing" class="user-table-data">{{ row.groupuser }}</td>
         <td v-else>
-            <!-- <input type="text" v-model="row.type" class="user-table-data"> -->
-            <div class="edit-type">
-                <label class="user-type-lable" for="admin">admin</label>
-                <input type="radio" name="usertype" id="user-type-input" v-model="row.type" value="admin">
-                <label class="user-type-lable" for="user">user</label>
-                <input type="radio" name="usertype" id="user-type-input" v-model="row.type" value="user">
-            </div>
-        </td>
-
-        <td v-if="!row.editing" class="user-table-data">{{ row.usergroup }}</td>
-        <td v-else class="select-td">
-            <!-- <input type="text" v-model="row.usergroup" class="user-table-data"> -->
             <div class="form-group">
-                <select id="usergroup" v-model="row.usergroup">
-                    <option value="">Select Group</option>
-                    <option v-for="group in userGroups" :value="group.groupname" :key="group">{{ group.groupname }}</option>
+                <select id="groupuser" v-model="row.groupuser">
+                    <option value="">Select User</option>
+                    <option v-for="user in usersData" :value="user.username" :key="user">{{ user.username }}</option>
                 </select>
             </div>
         </td>
@@ -127,14 +94,13 @@
 </template>
 
 <script>
-
 export default {
     components: {
         // panelHeader,
     },
     data() {
     return {
-        newRecord: { username: '', firstName: '', lastName: '', type: '', usergroup: ''},
+        newRecord: { groupname: '', groupuser: ''},
         showDialog: false,
     }
     },
@@ -143,81 +109,53 @@ export default {
         usersData() {
             return this.$store.state.usersData;
         },
+        groupData() {
+            return this.$store.state.groupData;
+        },
         showHeader(){
-            return this.usersData.length > 0;
+            return this.groupData.length > 0;
         },
         adminColor() {
             return this.$store.state.adminColor;
-        },
-        userGroups() {
-            return this.$store.state.groupData;
-        },
-    },
-    watch: {
-        'userGroups': function() {
-        // Update select options when userGroups changes
-            const select = document.getElementById('usergroup');
-            const options = select.options;
-            for (let i = options.length - 1; i >= 0; i--) {
-                const option = options[i];
-                if (!this.userGroups.includes(option.value)) {
-                    select.removeChild(option);
-                }
-            }
-            for (let i = 0; i < this.userGroups.length; i++) {
-                const group = this.userGroups[i];
-                if (!options.namedItem(group)) {
-                    const option = document.createElement('option');
-                    option.value = group;
-                    option.text = group;
-                    select.add(option);
-                }
-            }
         },
     },
     methods: {
         // ...mapMutations(['editRow', 'saveRow', 'addRow'])
         editRow(index) {
-            this.$store.commit('editUser', index);
+            this.$store.commit('editGroup', index);
         },
         saveRow(index) {
             // this.$store.commit('saveUser', index);
-            this.$store.commit('saveUser', {index: index, username: this.$store.state.userUsername});
+            this.$store.commit('saveGroup', {index: index, username: this.$store.state.userUsername});
         },
         addRow() {
-        const existingRecord = this.usersData.find(record => record.username === this.newRecord.username);
+        const existingRecord = this.groupData.find(record => record.groupname === this.newRecord.groupname);
         if (existingRecord) {
-            let errorMessage = document.querySelector('.alert');
+            let errorMessage = document.querySelector('.group-alert');
             errorMessage.style.display = 'flex';
-            errorMessage.innerHTML = 'This user is already defined';
+            errorMessage.innerHTML = 'This group is already defined';
             setTimeout(() => {
                 errorMessage.style.display = 'none';
             }, 3000);
             return;
-        }else if(this.newRecord.username.length < 5) {
-            let errorMessage = document.querySelector('.alert');
-            errorMessage.innerHTML = "Username must at least 5 characters "
-            errorMessage.style.display = 'flex';
-            setTimeout(() => {
-                errorMessage.style.display = 'none';
-            }, 3000);
-        }else if(this.newRecord.type !== 'admin' && this.newRecord.type !== 'user') {
-            let errorMessage = document.querySelector('.alert');
-            errorMessage.innerHTML = "Type should be Admin or User"
+        }
+        else if(this.newRecord.groupname.length < 5) {
+            let errorMessage = document.querySelector('.group-alert');
+            errorMessage.innerHTML = "Group name must at least 5 characters "
             errorMessage.style.display = 'flex';
             setTimeout(() => {
                 errorMessage.style.display = 'none';
             }, 3000);
         }
-        if (this.newRecord.username && this.newRecord.username.length >= 5 && this.newRecord.type && (this.newRecord.type === 'admin' || this.newRecord.type === 'user') && (this.newRecord.firstName || this.newRecord.lastName || this.newRecord.usergroup || true)) {
+        if (this.newRecord.groupname && this.newRecord.groupname.length >= 5 && (this.newRecord.groupname)) {
             const now = new Date();
             const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-            const newUser = { username: this.newRecord.username, firstName: this.newRecord.firstName, lastName: this.newRecord.lastName, type: this.newRecord.type, usergroup: this.newRecord.usergroup, editing: false, color: 'color1', creationTime: now.toLocaleTimeString([], options), creator: this.$store.state.userUsername, lastModificationTime: now.toLocaleTimeString([], options), lastModifier: this.$store.state.userUsername };
-            this.$store.commit('addUser', newUser);
-            this.newRecord = { username: '', firstName: '', lastName: '', type: '', usergroup: ''};
+            const newUser = { ...this.newRecord, editing: false, color: 'color1', creationTime: now.toLocaleTimeString([], options), creator: this.$store.state.userUsername, lastModificationTime: now.toLocaleTimeString([], options), lastModifier: this.$store.state.userUsername };
+            this.$store.commit('addGroup', newUser);
+            this.newRecord = { groupname: '', groupuser: ''};
             this.showDialog = false;
-            let usersList = document.querySelector(".user-table");
-            usersList.style.filter = "blur(0px)";
+            let GroupList = document.querySelector(".user-table");
+            GroupList.style.filter = "blur(0px)";
         }
     },
     addRowCancle() {
@@ -227,7 +165,7 @@ export default {
         this.newRecord = { username: '', firstName: '', lastName: '', type: '', usergroup: ''};
     },
     removeRow(index) {
-        this.$store.commit('removeUser', index);
+        this.$store.commit('removeGroup', index);
     },
     showDialogs() {
         let usersList = document.querySelector(".user-table");
@@ -248,7 +186,7 @@ export default {
 
 <style media="screen">
 
-#wrapper {
+#group-page {
     display: block;
     width: 87%;
     background: #080710;
@@ -335,7 +273,7 @@ export default {
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
-.alert {
+.group-alert {
     position: absolute;
     top: 0;
     right: 0;
@@ -353,7 +291,7 @@ export default {
     align-items: center;
     flex-direction: row-reverse;
 }
-.alert::after {
+.group-alert::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -407,9 +345,11 @@ export default {
     margin-left: 12px;
 }
 #keywords {
+    /* width: 50%; */
     margin: 0 auto;
     font-size: 1.2em;
     margin-top: 45px;
+    /* overflow: scroll; */
 }
 #keywords thead {
     background: #d2cca1e8;
@@ -475,21 +415,7 @@ export default {
 th, td {
     font-size: 16px;
 }
-.form-group {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-}
-.form-group select {
-    background-color: #080710;
-    outline: none;
-    border: 1px solid #efefef;
-    border-radius: 4px;
-    color: #efefef;
-    padding: 4px;
-}
-.select-td {
-    border-bottom: 1px solid #d2cca12c;
+#groupuser {
+    overflow-y: scroll;
 }
 </style>
