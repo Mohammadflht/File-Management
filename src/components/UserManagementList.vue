@@ -212,7 +212,7 @@ export default {
         if (this.newRecord.username && this.newRecord.username.length >= 5 && this.newRecord.type && (this.newRecord.type === 'admin' || this.newRecord.type === 'user') && (this.newRecord.firstName || this.newRecord.lastName || this.newRecord.usergroup || true)) {
             const now = new Date();
             const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-            const newUser = { username: this.newRecord.username, firstName: this.newRecord.firstName, lastName: this.newRecord.lastName, type: this.newRecord.type, usergroup: this.newRecord.usergroup, editing: false, color: 'color1', creationTime: now.toLocaleTimeString([], options), creator: this.$store.state.userUsername, lastModificationTime: now.toLocaleTimeString([], options), lastModifier: this.$store.state.userUsername };
+            const newUser = { username: this.newRecord.username, firstName: this.newRecord.firstName, lastName: this.newRecord.lastName, type: this.newRecord.type, usergroup: this.newRecord.usergroup, editing: false, color: 'color1', creationTime: now.toLocaleTimeString([], options), creator: this.$store.state.userUsername, lastModificationTime: '', lastModifier: ''};
             this.$store.commit('addUser', newUser);
             this.newRecord = { username: '', firstName: '', lastName: '', type: '', usergroup: ''};
             this.showDialog = false;
