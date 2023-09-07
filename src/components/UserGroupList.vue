@@ -150,7 +150,7 @@ export default {
         if (this.newRecord.groupname && this.newRecord.groupname.length >= 5 && (this.newRecord.groupname)) {
             const now = new Date();
             const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-            const newUser = { ...this.newRecord, editing: false, color: 'color1', creationTime: now.toLocaleTimeString([], options), creator: this.$store.state.userUsername, lastModificationTime: now.toLocaleTimeString([], options), lastModifier: this.$store.state.userUsername };
+            const newUser = { ...this.newRecord, editing: false, color: 'color1', creationTime: now.toLocaleTimeString([], options), creator: this.$store.state.userUsername, lastModificationTime: '', lastModifier: ''};
             this.$store.commit('addGroup', newUser);
             this.newRecord = { groupname: '', groupuser: ''};
             this.showDialog = false;
