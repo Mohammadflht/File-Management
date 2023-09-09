@@ -43,12 +43,12 @@ export default {
       if (this.username === "admin" && this.password === "admin") {
           this.$router.push('/admin-panel/file-management');
           errorMessage.style.visibility = "hidden";
-        } else if (this.username === "mohammadflht" && this.password !== "123456789") {
+        } else if (this.username === "admin" && this.password !== "admin") {
           inputUsername.style.borderColor = "rgba(255, 255, 255, 0.07)";
           inputPassword.style.borderColor = "#ff715b80";
           errorMessage.style.visibility = "visible";
           errorMessage.innerHTML = "Invalid Password";
-        } else if (this.username !== "mohammadflht" && this.password === "123456789") {
+        } else if (this.username !== "admin" && this.password === "admin") {
           inputUsername.style.borderColor = "#ff715b80";
           inputPassword.style.borderColor = "rgba(255, 255, 255, 0.07)";
           errorMessage.style.visibility = "visible";
