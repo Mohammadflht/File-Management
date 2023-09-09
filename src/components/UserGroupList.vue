@@ -7,9 +7,9 @@
 </template>
 
 <script>
-    import ButtonComponent from './GroupButtonComponent.vue';
-    import AddNewGroup from './AddGroupComponent.vue';
-    import GroupsList from './GroupListComponent.vue';
+    import ButtonComponent from '@/components/User Group/GroupButtonComponent.vue';
+    import AddNewGroup from '@/components/User Group/AddGroupComponent.vue';
+    import GroupsList from '@/components/User Group/GroupListComponent.vue';
 
 export default {
     components: {

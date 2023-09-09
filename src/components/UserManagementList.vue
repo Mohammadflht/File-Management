@@ -7,9 +7,9 @@
 </template>
 
 <script>
-    import ButtonComponent from './ButtonComponent.vue';
-    import AddNewUser from './AddUserComponent.vue';
-    import UsersList from './UsersListComponent.vue';
+    import ButtonComponent from '@/components/User Management/ButtonComponent.vue';
+    import AddNewUser from '@/components/User Management/AddUserComponent.vue';
+    import UsersList from '@/components/User Management/UsersListComponent.vue';
 
 export default {
     components: {
@@ -19,7 +19,6 @@ export default {
     },
     data() {
     return {
-        // newRecord: { username: '', firstName: '', lastName: '', type: '', usergroup: ''},
         showDialog: false,
     }
     },
