@@ -112,3 +112,21 @@
     },
     }
 </script>
+<style>
+.create-user-input {
+    width: 160px;
+    height: 50px;
+    text-align: center;
+    padding: 15px 10px;
+    border: 1px solid #d2cca12c;
+}
+.user-type-select {
+    background-color: #1d1d1faa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #d2cca123;
+    padding: 0 12px;
+}
+</style>
