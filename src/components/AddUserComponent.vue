@@ -129,4 +129,26 @@
     border: 1px solid #d2cca123;
     padding: 0 12px;
 }
+.user-records-add-icon {
+    color: #d2cca1e8;
+    font-size: 16px;
+}
+.user-records-cancle-add-icon {
+    color: #d2cca1e8;
+    font-size: 16px;
+    margin-left: 12px;
+}
+#keywords {
+    margin: 0 auto;
+    font-size: 1.2em;
+    margin-top: 45px;
+}
+#keywords thead {
+    background: #d2cca1e8;
+}
+#keywords thead tr th {
+    padding: 12px 30px;
+    padding-left: 42px;
+    text-align: center;
+}
 </style>
