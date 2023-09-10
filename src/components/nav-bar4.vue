@@ -118,7 +118,9 @@ export default {
         navBarList4.style.visibility = "visible";
         usernameList.style.visibility = "visible";
         colorThemes.style.visibility = "visible";
-        listIcon4.style.color = "#d2cca1";
+        if(this.$store.state.adminColor === 'color1') listIcon4.style.color = "#d2cca1";
+        if(this.$store.state.adminColor === 'color2') listIcon4.style.color = "#89BBFE";
+        if(this.$store.state.adminColor === 'color3') listIcon4.style.color = "#20a8b7";
         },
         selectUser(user) {
             let destination;

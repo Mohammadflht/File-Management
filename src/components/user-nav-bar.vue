@@ -413,6 +413,12 @@ tbody tr.color1 {
 .color1 input {
     color: #d2cca1 !important;
 }
+.color1 li {
+    color: #d2cca1 !important;
+}
+/* .color1 nav ul li .listIcon1 {
+    color: #d2cca1 !important;
+} */
 .color2 .select-list {
     color: #89BBFE !important;
 }
@@ -429,6 +435,9 @@ tbody tr.color1 {
 .color2 input {
     color: #89BBFE !important;
 }
+.color2 li {
+    color: #89BBFE !important;
+}
 .color3 .select-list {
     color: #20a8b7 !important;
 }
@@ -443,6 +452,9 @@ tbody tr.color1 {
     accent-color: #20a8b7 !important;
 }
 .color3 input {
+    color: #25c9db !important;
+}
+.color3 li   {
     color: #25c9db !important;
 }
 .gold {
