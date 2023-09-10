@@ -20,7 +20,7 @@
                 <li  class="nav-item li4 active"><font-awesome-icon class="listIcon4 iconList" icon="fas fa-file-alt"/> File Management</li>
             </ul>
             <div class="username-list">
-                <h2 class="usernames-header">Usernames</h2>
+                <h2 class="usernames-header" v-if="usersData.length > 0">Usernames</h2>
                 <ul>
                     <li class="usernames" v-for="(user, index) in usersData" :key="index" @click="selectUser(user)">{{ user.username }}</li>
                 </ul>
