@@ -70,6 +70,8 @@ export default {
         let listIcon3 = document.querySelector(".listIcon3");
         let listIcon4 = document.querySelector(".listIcon4");
         let usernameList = document.querySelector(".username-list");
+        let colorThemes = document.querySelector(".color-themes-container");
+
 
         navigationPanel.style.width = "4%";
         userProfilePicture.style.visibility = "hidden";
@@ -82,6 +84,7 @@ export default {
         navBarList3.style.visibility = "hidden";
         navBarList4.style.visibility = "hidden";
         usernameList.style.visibility = "hidden";
+        colorThemes.style.visibility = "hidden";
         listIcon1.style.visibility = "visible";
         listIcon2.style.visibility = "visible";
         listIcon2.style.color = "#080710";
@@ -101,6 +104,7 @@ export default {
         let navBarList4 = document.querySelector(".li4");
         let listIcon2 = document.querySelector(".listIcon2");
         let usernameList = document.querySelector(".username-list");
+        let colorThemes = document.querySelector(".color-themes-container");
 
 
         navigationPanel.style.width = "13%";
@@ -114,6 +118,7 @@ export default {
         navBarList3.style.visibility = "visible";
         navBarList4.style.visibility = "visible";
         usernameList.style.visibility = "visible";
+        colorThemes.style.visibility = "visible";
         listIcon2.style.color = "#d2cca1";
         },
         selectUser(user) {
