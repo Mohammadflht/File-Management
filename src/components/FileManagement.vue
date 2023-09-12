@@ -7,7 +7,7 @@
 
 <script>
 import navBar4 from './nav-bar4.vue';
-import FilesList from './File ManagementList.vue';
+import FilesList from './FileManagementList.vue';
 
 export default {
     components: {
