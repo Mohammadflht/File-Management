@@ -11,15 +11,27 @@ export default new Vuex.Store({
         groupData: JSON.parse(localStorage.getItem('groupData')) || [],
         color: 'color1',
         adminColor: 'color1',
+        files: JSON.parse(localStorage.getItem("files")) || [],
     },
     mutations: {
-        addUser(state, newUser) {
+        // addFile(state, file) {
+        //     state.files.push(file);
+        //     localStorage.setItem('files', JSON.stringify(state.files));
+        // },
+        setFiles(state, files) {
+            state.files = files;
+            localStorage.setItem('files', JSON.stringify(state.files));
+        },        addUser(state, newUser) {
             state.usersData.push(newUser);
             localStorage.setItem('usersData', JSON.stringify(state.usersData));
         },
         addGroup(state, newGroup) {
             state.groupData.push(newGroup);
             localStorage.setItem('groupData', JSON.stringify(state.groupData));
+        },
+        addFile(state, file) {
+            state.files.push(file);
+            localStorage.setItem("files", JSON.stringify(state.files));
         },
         removeUser(state, index) {
             state.usersData.splice(index, 1);
@@ -28,6 +40,10 @@ export default new Vuex.Store({
         removeGroup(state, index) {
             state.groupData.splice(index, 1);
             localStorage.setItem('groupData', JSON.stringify(state.groupData));
+        },
+        removeFile(state, index) {
+            state.files.splice(index, 1);
+            localStorage.setItem('files', JSON.stringify(state.files));
         },
         editUser(state, index) {
             state.usersData[index].editing = true;
