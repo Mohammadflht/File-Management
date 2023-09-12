@@ -416,9 +416,13 @@ tbody tr.color1 {
 .color1 li {
     color: #d2cca1 !important;
 }
-/* .color1 nav ul li .listIcon1 {
-    color: #d2cca1 !important;
-} */
+.color1 #file-drag:hover {
+    border-color: #d2cca1 !important;
+}
+.color1 #file-upload-btn {
+    background-color: #d2cca1 !important;
+    color: #363636;
+}
 .color2 .select-list {
     color: #89BBFE !important;
 }
@@ -438,6 +442,13 @@ tbody tr.color1 {
 .color2 li {
     color: #89BBFE !important;
 }
+.color2 #file-drag:hover {
+    border-color: #89BBFE !important;
+}
+.color2 #file-upload-btn {
+    background-color: #89BBFE !important;
+    color: #363636;
+}
 .color3 .select-list {
     color: #20a8b7 !important;
 }
@@ -456,6 +467,13 @@ tbody tr.color1 {
 }
 .color3 li   {
     color: #25c9db !important;
+}
+.color3 #file-drag:hover {
+    border-color: #25c9db !important;
+}
+.color3 #file-upload-btn {
+    background-color: #25c9db !important;
+    color: #363636;
 }
 .gold {
     background-color: #d2cca1e8 !important;
