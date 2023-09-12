@@ -1,21 +1,21 @@
 <template>
-    <div id="user-management">\
+    <div id="user-management">
         <navBar3></navBar3>
-        <!-- <panelHeader></panelHeader> -->
+        <StorageList></StorageList>
     </div>
 </template>
 
 <script>
-// import panelHeader from './panel-header.vue';
 import navBar3 from './nav-bar3.vue';
+import StorageList from './StorageSpaceList.vue';
 export default {
     components: {
-        // panelHeader,
         navBar3,
+        StorageList,
     },
     data() {
     return {
-        username: 'mohammadflht'
+
     }
     }
 }
