@@ -1,5 +1,5 @@
 <template>
-    <div id="admin-panel">\
+    <div id="admin-panel">
         <navBar></navBar>
         <!-- <panelHeader></panelHeader> -->
     </div>
