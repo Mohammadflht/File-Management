@@ -2,8 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-// import { v4 as uuidv4 } from 'uuid';
-// Vue.prototype.$uuid = uuidv4;
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
