@@ -14,15 +14,14 @@ export default {
         StorageList,
     },
     data() {
-    return {
+        return {
 
-    }
+        }
     }
 }
 </script>
 
 <style media="screen">
-
 #user-management {
     width: 100%;
     height: 100vh;

@@ -4,7 +4,7 @@
         <label>
             <input type="checkbox" class="alertCheckbox" autocomplete="off" />
             <div class="group-alert add-user-error">
-                <span class="alertText"><br class="clear"/></span>
+                <span class="alertText"><br class="clear" /></span>
             </div>
         </label>
     </div>
@@ -12,20 +12,19 @@
 <script>
 export default {
     props: {
-    showDialog: Boolean,
+        showDialog: Boolean,
     },
     methods: {
-    showDialogs() {
-        let usersList = document.querySelector(".user-table");
-        this.$emit("show-dialog", true);
-        usersList.style.filter = "blur(6px)";
-        usersList.style.transition = "all 0.5s";
-    },
+        showDialogs() {
+            let usersList = document.querySelector(".user-table");
+            this.$emit("show-dialog", true);
+            usersList.style.filter = "blur(6px)";
+            usersList.style.transition = "all 0.5s";
+        },
     },
 };
 </script>
 <style>
-
 .group-alert {
     position: absolute;
     top: 0;
@@ -44,6 +43,7 @@ export default {
     align-items: center;
     flex-direction: row-reverse;
 }
+
 .group-alert::after {
     content: "";
     position: absolute;
@@ -54,31 +54,37 @@ export default {
     background-color: rgba(255, 8, 8, 0.879);
     animation: fill-line 3s linear forwards;
 }
+
 @keyframes fill-line {
     from {
-    width: 0;
+        width: 0;
     }
+
     to {
-    width: 100%;
+        width: 100%;
     }
 }
+
 .alertCheckbox {
     display: none;
 }
-:checked + .alert {
+
+:checked+.alert {
     display: none;
 }
+
 .alertText {
     display: table;
     margin: 0 auto;
     font-size: 16px;
 }
+
 .clear {
     clear: both;
 }
+
 .add-user-.error {
     background-color: #FEE;
     border: 1px solid #EDD;
     color: #A66;
-}
-</style>
+}</style>

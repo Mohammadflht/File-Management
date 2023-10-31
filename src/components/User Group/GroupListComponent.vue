@@ -21,18 +21,22 @@
                         <div class="form-group">
                             <select id="groupuser" v-model="row.groupuser">
                                 <option value="">Select User</option>
-                                <option v-for="user in usersData" :value="user.username" :key="user">{{ user.username }}</option>
+                                <option v-for="user in usersData" :value="user.username" :key="user">{{ user.username }}
+                                </option>
                             </select>
                         </div>
                     </td>
-                    <td class="user-table-data">{{row.creator}}</td>
-                    <td class="user-table-data">{{row.creationTime}}</td>
-                    <td class="user-table-data">{{row.lastModifier }}</td>
-                    <td class="user-table-data">{{row.lastModificationTime}}</td>
+                    <td class="user-table-data">{{ row.creator }}</td>
+                    <td class="user-table-data">{{ row.creationTime }}</td>
+                    <td class="user-table-data">{{ row.lastModifier }}</td>
+                    <td class="user-table-data">{{ row.lastModificationTime }}</td>
                     <td class="user-table-data">
-                        <font-awesome-icon class="user-records-edit-icon user-records-icons" icon="fas fa-edit" @click="editRow(index)" v-if="!row.editing" title="Edit"/>
-                        <font-awesome-icon class="user-records-save-icon user-records-icons" icon="fas fa-save" @click="saveRow(index)" v-else title="Save"/>
-                        <font-awesome-icon class="user-records-remove-icon user-records-icons" icon="fas fa-trash" @click="removeRow(index)" title="Delete"/>
+                        <font-awesome-icon class="user-records-edit-icon user-records-icons" icon="fas fa-edit"
+                            @click="editRow(index)" v-if="!row.editing" title="Edit" />
+                        <font-awesome-icon class="user-records-save-icon user-records-icons" icon="fas fa-save"
+                            @click="saveRow(index)" v-else title="Save" />
+                        <font-awesome-icon class="user-records-remove-icon user-records-icons" icon="fas fa-trash"
+                            @click="removeRow(index)" title="Delete" />
                     </td>
                 </tr>
             </tbody>
@@ -57,7 +61,7 @@ export default {
         },
     },
     computed: {
-        showHeader(){
+        showHeader() {
             return this.groupData.length > 0;
         }
     },
@@ -75,6 +79,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

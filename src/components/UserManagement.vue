@@ -18,15 +18,14 @@ export default {
         userLists,
     },
     data() {
-    return {
-        username: 'mohammadflht'
-    }
+        return {
+            username: 'mohammadflht'
+        }
     }
 }
 </script>
 
 <style media="screen">
-
 #user-management {
     width: 100%;
     height: 100vh;
@@ -34,5 +33,4 @@ export default {
     display: flex;
     position: relative;
 }
-
 </style>

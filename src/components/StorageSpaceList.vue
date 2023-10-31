@@ -40,7 +40,7 @@ export default {
                 const fileSizeKB = file.size / 1024;
                 const fileSizeMB = fileSizeKB / 1024;
                 const sizeDisplay = fileSizeMB >= 1 ? `${fileSizeMB.toFixed(2)} MB` : `${fileSizeKB.toFixed(2)} KB`;
-                return {...file, sizeDisplay,};
+                return { ...file, sizeDisplay, };
             });
         },
         showHeader() {
@@ -244,9 +244,11 @@ div.upload-semi-text {
     position: absolute;
     left: 50%;
     top: 0;
-    transform: translateX(-50%);;
+    transform: translateX(-50%);
+    ;
     overflow-y: scroll;
 }
+
 .file-table-data {
     height: 100%;
     text-align: center;

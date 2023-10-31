@@ -200,7 +200,8 @@ export default {
     }
 }
 
-progress,.progress {
+progress,
+.progress {
     appearance: none;
     display: inline;
     clear: both;

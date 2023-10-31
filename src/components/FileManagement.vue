@@ -15,15 +15,14 @@ export default {
         FilesList,
     },
     data() {
-    return {
+        return {
 
-    }
+        }
     }
 }
 </script>
 
 <style media="screen">
-
 #file-management {
     width: 100%;
     height: 100vh;

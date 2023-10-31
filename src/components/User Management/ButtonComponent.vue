@@ -1,27 +1,27 @@
 <template>
     <div>
-    <button class="add-user-btn" @click="showDialogs()">Add User</button>
-    <label>
+        <button class="add-user-btn" @click="showDialogs()">Add User</button>
+        <label>
             <input type="checkbox" class="alertCheckbox" autocomplete="off" />
             <div class="alert add-user-error">
-                <span class="alertText"><br class="clear"/></span>
+                <span class="alertText"><br class="clear" /></span>
             </div>
-    </label>
+        </label>
     </div>
 </template>
 
 <script>
 export default {
     props: {
-    showDialog: Boolean,
+        showDialog: Boolean,
     },
     methods: {
-    showDialogs() {
-        let usersList = document.querySelector(".user-table");
-        this.$emit("show-dialog", true);
-        usersList.style.filter = "blur(6px)";
-        usersList.style.transition = "all 0.5s";
-    },
+        showDialogs() {
+            let usersList = document.querySelector(".user-table");
+            this.$emit("show-dialog", true);
+            usersList.style.filter = "blur(6px)";
+            usersList.style.transition = "all 0.5s";
+        },
     },
 };
 </script>
@@ -43,12 +43,13 @@ export default {
     transform: translateX(-50%);
     box-shadow: rgba(255, 255, 255, 0.25) 0px 5px 25px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 3px 6px, rgba(255, 255, 255, 0.17) 0px 1px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
 }
+
 .add-user-btn::before {
     content: '';
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     position: absolute;
     top: -2px;
-    left:-2px;
+    left: -2px;
     background-size: 400%;
     z-index: -1;
     filter: blur(5px);
@@ -59,9 +60,11 @@ export default {
     transition: opacity .3s ease-in-out;
     border-radius: 10px;
 }
+
 .add-user-btn:active {
     color: #000
 }
+
 .add-user-btn:active:after {
     background: transparent;
 }
@@ -81,10 +84,19 @@ export default {
     top: 0;
     border-radius: 10px;
 }
+
 @keyframes glowing {
-    0% { background-position: 0 0; }
-    50% { background-position: 400% 0; }
-    100% { background-position: 0 0; }
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
 }
 
 /* error state start */
@@ -106,6 +118,7 @@ export default {
     align-items: center;
     flex-direction: row-reverse;
 }
+
 .alert::after {
     content: "";
     position: absolute;
@@ -116,31 +129,37 @@ export default {
     background-color: rgba(255, 8, 8, 0.879);
     animation: fill-line 3s linear forwards;
 }
+
 @keyframes fill-line {
     from {
-    width: 0;
+        width: 0;
     }
+
     to {
-    width: 100%;
+        width: 100%;
     }
 }
+
 .alertCheckbox {
     display: none;
 }
-:checked + .alert {
+
+:checked+.alert {
     display: none;
 }
+
 .alertText {
     display: table;
     margin: 0 auto;
     font-size: 16px;
 }
+
 .clear {
     clear: both;
 }
+
 .add-user-.error {
     background-color: #FEE;
     border: 1px solid #EDD;
     color: #A66;
-}
-</style>
+}</style>

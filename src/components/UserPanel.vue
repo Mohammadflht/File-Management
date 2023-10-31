@@ -14,15 +14,14 @@ export default {
         userNavBar,
     },
     data() {
-    return {
-        username: 'mohammadflht'
-    }
+        return {
+            username: 'mohammadflht'
+        }
     }
 }
 </script>
 
 <style media="screen">
-
 #admin-panel {
     width: 100%;
     height: 100vh;
