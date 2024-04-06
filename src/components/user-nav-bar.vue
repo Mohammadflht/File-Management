@@ -69,33 +69,35 @@ export default {
             let logoutBtn = document.querySelector(".logout-division");
             let closeNavBarIcon = document.querySelector(".close-nav-bar-icon");
             let openNavBarIcon = document.querySelector(".open-nav-bar-icon");
-            let navBarList1 = document.querySelector(".li1");
-            let navBarList2 = document.querySelector(".li2");
-            let navBarList3 = document.querySelector(".li3");
+            // let navBarList1 = document.querySelector(".li1");
+            // let navBarList2 = document.querySelector(".li2");
+            // let navBarList3 = document.querySelector(".li3");
             let navBarList4 = document.querySelector(".li4");
-            let listIcon1 = document.querySelector(".listIcon1");
-            let listIcon2 = document.querySelector(".listIcon2");
-            let listIcon3 = document.querySelector(".listIcon3");
+            // let listIcon1 = document.querySelector(".listIcon1");
+            // let listIcon2 = document.querySelector(".listIcon2");
+            // let listIcon3 = document.querySelector(".listIcon3");
             let listIcon4 = document.querySelector(".listIcon4");
             let usernameList = document.querySelector(".username-list");
-
-
+            let colorThemes = document.querySelector(".color-themes-container");
+            
+            
             navigationPanel.style.width = "4%";
             userProfilePicture.style.visibility = "hidden";
             userUsername.style.visibility = "hidden";
             logoutBtn.style.visibility = "hidden";
             closeNavBarIcon.style.display = "none";
             openNavBarIcon.style.display = "block";
-            navBarList1.style.visibility = "hidden";
-            navBarList2.style.visibility = "hidden";
-            navBarList3.style.visibility = "hidden";
+            // navBarList1.style.visibility = "hidden";
+            // navBarList2.style.visibility = "hidden";
+            // navBarList3.style.visibility = "hidden";
             navBarList4.style.visibility = "hidden";
             usernameList.style.visibility = "hidden";
-            listIcon1.style.visibility = "visible";
-            listIcon2.style.visibility = "visible";
-            listIcon3.style.visibility = "visible";
+            // listIcon1.style.visibility = "visible";
+            // listIcon2.style.visibility = "visible";
+            // listIcon3.style.visibility = "visible";
             listIcon4.style.visibility = "visible";
             listIcon4.style.color = "#080710";
+            colorThemes.style.visibility = "hidden";
         },
         openNavigation() {
             let navigationPanel = document.querySelector("#nav-bar-container");
@@ -104,12 +106,14 @@ export default {
             let logoutBtn = document.querySelector(".logout-division");
             let closeNavBarIcon = document.querySelector(".close-nav-bar-icon");
             let openNavBarIcon = document.querySelector(".open-nav-bar-icon");
-            let navBarList1 = document.querySelector(".li1");
-            let navBarList2 = document.querySelector(".li2");
-            let navBarList3 = document.querySelector(".li3");
+            // let navBarList1 = document.querySelector(".li1");
+            // let navBarList2 = document.querySelector(".li2");
+            // let navBarList3 = document.querySelector(".li3");
             let navBarList4 = document.querySelector(".li4");
             let listIcon4 = document.querySelector(".listIcon4");
             let usernameList = document.querySelector(".username-list");
+            let colorThemes = document.querySelector(".color-themes-container");
+
 
             navigationPanel.style.width = "13%";
             userProfilePicture.style.visibility = "visible";
@@ -117,12 +121,15 @@ export default {
             logoutBtn.style.visibility = "visible";
             closeNavBarIcon.style.display = "block";
             openNavBarIcon.style.display = "none";
-            navBarList1.style.visibility = "visible";
-            navBarList2.style.visibility = "visible";
-            navBarList3.style.visibility = "visible";
+            // navBarList1.style.visibility = "visible";
+            // navBarList2.style.visibility = "visible";
+            // navBarList3.style.visibility = "visible";
             navBarList4.style.visibility = "visible";
             usernameList.style.visibility = "visible";
-            listIcon4.style.color = "#d2cca1";
+            colorThemes.style.visibility = "visible";
+            if (this.$store.state.adminColor === 'color1') listIcon4.style.color = "#d2cca1";
+            if (this.$store.state.adminColor === 'color2') listIcon4.style.color = "#89BBFE";
+            if (this.$store.state.adminColor === 'color3') listIcon4.style.color = "#20a8b7";
         },
         selectUser(user) {
             let destination;
