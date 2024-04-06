@@ -1,7 +1,7 @@
 <template>
     <div id="file-management">
         <navBar4></navBar4>
-        <FilesList></FilesList>
+        <fileUpload></fileUpload>
     </div>
 </template>
 
@@ -12,7 +12,7 @@ import FilesList from './FileManagementList.vue';
 export default {
     components: {
         navBar4,
-        FilesList,
+        fileUpload: FilesList,
     },
     data() {
         return {

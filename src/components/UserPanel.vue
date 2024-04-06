@@ -1,17 +1,19 @@
 <template>
     <div id="admin-panel">\
         <userNavBar></userNavBar>
-        <!-- <panelHeader></panelHeader> -->
+        <fileUpload></fileUpload>
     </div>
 </template>
 
 <script>
 // import panelHeader from './panel-header.vue';
 import userNavBar from './user-nav-bar.vue';
+import FilesList from './FileManagementList.vue';
+
 export default {
     components: {
-        // panelHeader,
         userNavBar,
+        fileUpload: FilesList
     },
     data() {
         return {
