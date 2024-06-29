@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
+
 export default {
     props: {
         showDialog: {
@@ -81,33 +83,33 @@ export default {
     methods: {
         addRow() {
             const existingRecord = this.usersData.find(record => record.username === this.newRecord.username);
-            if (existingRecord) {
-                let errorMessage = document.querySelector('.alert');
-                errorMessage.style.display = 'flex';
-                errorMessage.innerHTML = 'This user is already defined';
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 3000);
+            if(this.newRecord.username == '') {
+                toast.fire({
+                    title: "Username can't be empty",
+                    icon:'error',
+                })
+            }
+            else if (existingRecord) {
+                toast.fire({
+                    title: 'This user is already defined',
+                    icon:'error',
+                })
                 return;
             } else if (this.newRecord.username.length < 5) {
-                let errorMessage = document.querySelector('.alert');
-                errorMessage.innerHTML = "Username must at least 5 characters "
-                errorMessage.style.display = 'flex';
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 3000);
+                toast.fire({
+                    title: 'Username must at least 5 characters',
+                    icon:'error',
+                })
             } else if (this.newRecord.type !== 'admin' && this.newRecord.type !== 'user') {
-                let errorMessage = document.querySelector('.alert');
-                errorMessage.innerHTML = "Type should be Admin or User"
-                errorMessage.style.display = 'flex';
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 3000);
+                toast.fire({
+                    title: 'Type should be Admin or User',
+                    icon:'error',
+                })
             }
             if (this.newRecord.username && this.newRecord.username.length >= 5 && this.newRecord.type && (this.newRecord.type === 'admin' || this.newRecord.type === 'user') && (this.newRecord.firstName || this.newRecord.lastName || this.newRecord.usergroup || true)) {
-                const now = new Date();
+                const timeStamp = new Date();
                 const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-                const newUser = { username: this.newRecord.username, firstName: this.newRecord.firstName, lastName: this.newRecord.lastName, type: this.newRecord.type, usergroup: this.newRecord.usergroup, editing: false, color: 'color1', creationTime: now.toLocaleTimeString([], options), creator: this.$store.state.userUsername, lastModificationTime: '', lastModifier: '' };
+                const newUser = { username: this.newRecord.username, firstName: this.newRecord.firstName, lastName: this.newRecord.lastName, type: this.newRecord.type, usergroup: this.newRecord.usergroup, editing: false, color: 'color1', creationTime: timeStamp.toLocaleTimeString([], options), creator: this.$store.state.userUsername, lastModificationTime: '', lastModifier: '' };
                 this.$emit('add-user', newUser);
                 this.newRecord = { username: '', firstName: '', lastName: '', type: '', usergroup: '' };
             }
@@ -118,6 +120,17 @@ export default {
         },
     },
 }
+const toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    timer: 3000,
+    timerProgressBar: true,
+    showConfirmButton: false,
+    customClass: {
+        title: 'toast-title',
+        timerProgressBar: 'error-pbar'
+    }
+})
 </script>
 <style>
 .create-user-input {
@@ -163,4 +176,9 @@ export default {
     padding: 12px 30px;
     padding-left: 42px;
     text-align: center;
-}</style>
+}
+.error-pbar {
+    background-color: red;
+}
+
+</style>
