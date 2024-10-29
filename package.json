@@ -14,7 +14,11 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/vue-fontawesome": "^2.0.10",
     "core-js": "^3.8.3",
+<<<<<<< HEAD
     "sweetalert2": "^11.6.13",
+=======
+    "sweetalert2": "^11.12.1",
+>>>>>>> 9ad8ed7fc3ceddf0470f4c4bc24c981fb6b22b39
     "uuid": "^9.0.1",
     "vue": "^2.6.14",
     "vue-router": "^3.6.5",
